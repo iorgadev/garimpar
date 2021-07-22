@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap");
+@import "./abstract/variables";
+@import "./base/base";
+
+@import "./components/search";
+@import "./components/search/header";
+@import "./components/search/subheader";
+
+@import "./components/fieldset";
+@import "./components/search/competition";
+@import "./components/search/year";
+@import "./components/search/mention";
+@import "./components/search/level";
+@import "./components/search/award";
+@import "./components/search/state";
+
+@import "./pages/main";

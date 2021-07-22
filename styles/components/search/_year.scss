@@ -1,0 +1,16 @@
+.option {
+  &__year {
+    width: 100%;
+    display: flex;
+    column-gap: 1rem;
+    // padding-left: 1rem;
+
+    &__to,
+    &__from {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      text-transform: uppercase;
+    }
+  }
+}

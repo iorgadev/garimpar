@@ -1,0 +1,24 @@
+.option {
+  &__mention {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & span {
+      position: absolute;
+    }
+
+    & input {
+      width: 100%;
+    }
+  }
+}
+
+.mention-value {
+  flex-shrink: 0;
+  width: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,11 @@
+.search {
+  &__subheader {
+    width: 100%;
+    background-color: #05253b;
+    padding: 2rem 1rem;
+    color: rgb(165, 165, 165);
+    text-align: center;
+    font-size: 1.25rem;
+    border-bottom: 1px solid hsl(204, 84%, 17%);
+  }
+}
