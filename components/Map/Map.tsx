@@ -10,6 +10,7 @@ interface MapProps {
 interface SchoolType {
   lat: number;
   lon: number;
+  name: string;
 }
 
 function Map({ searchResults }: MapProps) {
@@ -22,15 +23,17 @@ function Map({ searchResults }: MapProps) {
     iconSize: [40, 40],
   });
 
-  const schoolResults = (searchResults: SchoolType[]) => {
-    return searchResults.length > 0
-      ? searchResults.map((school, index) => {
+  const schoolResults = (results: SchoolType[]) => {
+    return results.length > 0
+      ? results.map((school, index) => {
           return (
             <Marker
               key={index}
               position={[school.lat, school.lon]}
               icon={mapPin}
-            ></Marker>
+            >
+              <Popup>{school.name}</Popup>
+            </Marker>
           );
         })
       : null;
@@ -52,13 +55,6 @@ function Map({ searchResults }: MapProps) {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       {schoolResults(searchResults)}
-      <Marker position={[-9.9643468, -67.8471758]} icon={mapPin}>
-        <Popup>
-          School name
-          <br />
-          goes here
-        </Popup>
-      </Marker>
     </MapContainer>
   );
 }

@@ -57,7 +57,7 @@ function Level({ competitionType, setLevels }: LevelProps) {
               >
                 <input
                   type="checkbox"
-                  name={competitionType.name}
+                  name="level"
                   value={`${competitionType.name}-${level}`}
                   onChange={(e) => handleCheckBox(e)}
                 />

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Access from "../Access";
 import Award from "../Award";
 import Competition from "../Competition";
@@ -27,16 +27,42 @@ function Search({ setSearchResults }: SearchProps) {
 
   const [accessTypes, setAccessTypes] = useState<string[]>([]);
 
+  const [startDate, setStartDate] = useState(2008);
+  const [endDate, setEndDate] = useState(new Date().getFullYear());
+
+  const [location, setLocation] = useState<number | null>();
+
+  const form = useRef<HTMLFormElement>();
+
+  const search = async (e) => {
+    e.preventDefault();
+    const data = new FormData(form.current);
+    const schoolResults = await fetch(`http://localhost:8080/schools`, {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      headers: {
+        Accept: "application/json",
+        "Content-type": "application/json",
+      },
+      body: data,
+    });
+    const schools = await schoolResults.json();
+    // console.log(schools);
+    console.log(data);
+  };
+
   //building query criteria to get results for map markers
   const searchCriteria = async () => {
     let criteria = {};
 
     criteria = {
-      competitionType: competitionType,
-      year: { start: 2008, end: 2021 },
+      competitionID: competitionType.id,
+      year: { start: startDate, end: endDate },
       levels: levels.map((level) => level.split("-")[1]),
       awardTypes: awardTypes,
       accessTypes: accessTypes,
+      location: location,
       ...searchCriteria,
     };
 
@@ -46,12 +72,16 @@ function Search({ setSearchResults }: SearchProps) {
     const schoolResults = await fetch(`http://localhost:8080/schools`, {
       method: "POST",
       mode: "cors",
-      cache: "force-cache",
+      // cache: "no-cache",
+      headers: {
+        Accept: "application/json",
+        "Content-type": "application/json",
+      },
       body: JSON.stringify(criteria),
     });
-    const { schools } = await schoolResults.json();
+    const schools = await schoolResults.json();
 
-    // console.log(schools);
+    console.log(schools);
     setSearchResults(schools);
   };
 
@@ -62,12 +92,12 @@ function Search({ setSearchResults }: SearchProps) {
 
       <form>
         <Competition setCompetitionType={setCompetitionType} />
-        <YearRange />
+        <YearRange setStartDate={setStartDate} setEndDate={setEndDate} />
         <Mention />
         <Level competitionType={competitionType} setLevels={setLevels} />
         <Award setAwardTypes={setAwardTypes} />
         <Access setAccessTypes={setAccessTypes} />
-        <State />
+        <State setLocation={setLocation} />
 
         <div className="submit">
           <input

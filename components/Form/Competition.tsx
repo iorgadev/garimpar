@@ -40,7 +40,7 @@ function Competition({ setCompetitionType }: CompetitionProps) {
                   }`}
                 >
                   <input
-                    name="competition"
+                    name="competitionID"
                     type="radio"
                     value={type.id}
                     onChange={(e) => handleTypeChange(e)}

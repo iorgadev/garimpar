@@ -7,7 +7,7 @@ export default function Home() {
   const [searchResults, setSearchResults] = useState({});
 
   useEffect(() => {
-    console.log(searchResults);
+    // console.log(searchResults);
   }, [searchResults]);
 
   const Map = dynamic(() => import("../components/Map/Map"), {

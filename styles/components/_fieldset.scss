@@ -19,7 +19,7 @@
   }
 
   .choice {
-    border: 1px solid #0b4f80;
+    border: 2px solid #0b4f80;
     background-color: #0a4369;
     padding: 0.5rem;
     border-radius: 0.5rem;
@@ -62,6 +62,7 @@
 
   .checked {
     background-color: $main-yellow-color;
+    border: 2px solid rgb(255, 145, 0);
     color: $main-dark-color;
   }
 

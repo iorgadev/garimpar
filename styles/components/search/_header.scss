@@ -2,18 +2,21 @@
   &__header {
     width: 100%;
     background-color: #0097fd;
-    padding: 0.5rem 0 0.5rem 2rem;
-
+    padding: 1rem 0 1rem 2rem;
     color: white;
-
     display: flex;
     align-items: center;
     column-gap: 1rem;
+
+    @media only screen and (max-height: 851px) {
+      // padding: ;
+    }
 
     & h1 {
       white-space: nowrap;
       font-weight: 400;
       text-shadow: 0px 0px 1px #031929;
+      margin: 0;
     }
 
     // icons in the header
