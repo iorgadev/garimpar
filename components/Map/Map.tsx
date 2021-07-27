@@ -7,16 +7,10 @@ import {
   ZoomControl,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { useEffect, useState } from "react";
+import { SchoolType } from "../../types/SearchOptions";
 
 interface MapProps {
   searchResults: SchoolType[];
-}
-
-interface SchoolType {
-  lat: number;
-  lon: number;
-  name: string;
 }
 
 function Map({ searchResults }: MapProps) {
@@ -27,7 +21,8 @@ function Map({ searchResults }: MapProps) {
     iconSize: [40, 40],
   });
 
-  const schoolResults = (results: SchoolType[]) => {
+  //function to create each individual marker on the map
+  const resultMarkers = (results: SchoolType[]) => {
     return results.length > 0
       ? results.map((school, index) => {
           return (
@@ -43,11 +38,6 @@ function Map({ searchResults }: MapProps) {
       : null;
   };
 
-  //update map results after search complete
-  useEffect(() => {
-    if (searchResults.length > 0) console.log("update map here");
-  }, [searchResults]);
-
   return (
     <MapContainer
       center={[-9.3438819, -57.2983458]}
@@ -60,7 +50,7 @@ function Map({ searchResults }: MapProps) {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <ZoomControl position="topright" />
-      {schoolResults(searchResults)}
+      {resultMarkers(searchResults)}
     </MapContainer>
   );
 }

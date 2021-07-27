@@ -28,3 +28,19 @@ a {
   width: 100%;
   z-index: 0;
 }
+
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+  border: 2px solid $main-light-color !important;
+}
+
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+  background-color: $main-dark-color !important;
+  color: $light-blue !important;
+
+  &:hover,
+  &:active {
+    color: $main-light-color !important;
+  }
+}

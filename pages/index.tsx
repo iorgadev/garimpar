@@ -4,10 +4,7 @@ import Search from "../components/Form/Search/Search";
 import { SchoolType } from "../types/SearchOptions";
 
 export default function Home() {
-  // const [searchCriteria, setSearchCriteria] = useState({});
-  const [searchResults, setSearchResults] = useState<SchoolType[]>([
-    {} as SchoolType,
-  ]);
+  const [searchResults, setSearchResults] = useState<SchoolType[]>([]);
 
   useEffect(() => {
     // console.log(searchResults);
@@ -19,7 +16,6 @@ export default function Home() {
 
   return (
     <div className="main">
-      {/* <Search setSearchCriteria={setSearchCriteria} /> */}
       <Search setSearchResults={setSearchResults} />
       <Map searchResults={searchResults} />
     </div>

@@ -17,44 +17,21 @@ interface SearchProps {
 }
 
 function Search({ setSearchResults }: SearchProps) {
+  //search sidebar status
   const [hidden, setHidden] = useState(false);
 
+  //all search settings
   const [competitionType, setCompetitionType] = useState<CompetitionType>(
     {} as CompetitionType
   );
-
   const [levels, setLevels] = useState<string[]>([]);
-
   const [awardTypes, setAwardTypes] = useState<string[]>([]);
-
   const [accessTypes, setAccessTypes] = useState<string[]>([]);
-
   const [startDate, setStartDate] = useState(2008);
   const [endDate, setEndDate] = useState(new Date().getFullYear());
-
   const [location, setLocation] = useState<number | null>();
 
-  const form = useRef<HTMLFormElement>();
-
-  const search = async (e: React.FormEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    const data = new FormData(form.current);
-    const schoolResults = await fetch(`http://localhost:8080/schools`, {
-      method: "POST",
-      mode: "cors",
-      cache: "no-cache",
-      headers: {
-        Accept: "application/json",
-        "Content-type": "application/json",
-      },
-      body: data,
-    });
-    const schools = await schoolResults.json();
-    // console.log(schools);
-    console.log(data);
-  };
-
-  //building query criteria to get results for map markers
+  //building query criteria from search settings to get results
   const searchCriteria = async () => {
     let criteria = {};
 
@@ -65,11 +42,8 @@ function Search({ setSearchResults }: SearchProps) {
       awardTypes: awardTypes,
       accessTypes: accessTypes,
       location: location,
-      ...searchCriteria,
+      // ...searchCriteria,
     };
-
-    // const searchData = await fetch("http://localhost:8080/schools");
-    // const searchResults = await searchData.json();
 
     const schoolResults = await fetch(`http://localhost:8080/schools`, {
       method: "POST",
@@ -83,13 +57,13 @@ function Search({ setSearchResults }: SearchProps) {
     });
     const schools = await schoolResults.json();
 
-    // console.log(schools);
-    setSearchResults(schools);
+    //if api calls succeeds
+    if (schoolResults.status === 200) setSearchResults(schools);
   };
 
   return (
     <div className={`search ${hidden ? `hidden` : ``}`}>
-      <Header setHidden={setHidden} />
+      <Header hidden={hidden} setHidden={setHidden} />
       <SubHeader />
 
       <form>
