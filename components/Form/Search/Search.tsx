@@ -9,14 +9,16 @@ import YearRange from "../YearRange";
 import Header from "./Header";
 import SubHeader from "./SubHeader";
 import Icon from "../../Icons/Icon";
-import { CompetitionType, LevelType } from "../../../types/SearchOptions";
+import { CompetitionType, SchoolType } from "../../../types/SearchOptions";
 
 interface SearchProps {
-  setSearchCriteria?: React.Dispatch<React.SetStateAction<{}>>;
-  setSearchResults: React.Dispatch<React.SetStateAction<{}>>;
+  // setSearchCriteria?: React.Dispatch<React.SetStateAction<{}>>;
+  setSearchResults: React.Dispatch<React.SetStateAction<SchoolType[]>>;
 }
 
 function Search({ setSearchResults }: SearchProps) {
+  const [hidden, setHidden] = useState(false);
+
   const [competitionType, setCompetitionType] = useState<CompetitionType>(
     {} as CompetitionType
   );
@@ -34,7 +36,7 @@ function Search({ setSearchResults }: SearchProps) {
 
   const form = useRef<HTMLFormElement>();
 
-  const search = async (e) => {
+  const search = async (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault();
     const data = new FormData(form.current);
     const schoolResults = await fetch(`http://localhost:8080/schools`, {
@@ -72,7 +74,7 @@ function Search({ setSearchResults }: SearchProps) {
     const schoolResults = await fetch(`http://localhost:8080/schools`, {
       method: "POST",
       mode: "cors",
-      // cache: "no-cache",
+      cache: "no-cache",
       headers: {
         Accept: "application/json",
         "Content-type": "application/json",
@@ -81,13 +83,13 @@ function Search({ setSearchResults }: SearchProps) {
     });
     const schools = await schoolResults.json();
 
-    console.log(schools);
+    // console.log(schools);
     setSearchResults(schools);
   };
 
   return (
-    <div className="search">
-      <Header />
+    <div className={`search ${hidden ? `hidden` : ``}`}>
+      <Header setHidden={setHidden} />
       <SubHeader />
 
       <form>

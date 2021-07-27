@@ -1,5 +1,11 @@
 import L from "leaflet";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  ZoomControl,
+} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useEffect, useState } from "react";
 
@@ -14,8 +20,6 @@ interface SchoolType {
 }
 
 function Map({ searchResults }: MapProps) {
-  // const [results, setResults] = useState<SchoolType[]>(searchResults);
-
   //the current pin for each school result
   // - can be customized to include other colors, sizes, etc
   var mapPin = L.icon({
@@ -47,13 +51,15 @@ function Map({ searchResults }: MapProps) {
   return (
     <MapContainer
       center={[-9.3438819, -57.2983458]}
-      zoom={5}
+      zoom={6}
       scrollWheelZoom={true}
+      zoomControl={false}
     >
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
+      <ZoomControl position="topright" />
       {schoolResults(searchResults)}
     </MapContainer>
   );

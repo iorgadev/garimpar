@@ -24,7 +24,7 @@ function State({ setLocation }) {
   return (
     <Fieldset title="State" oneLine={true}>
       <div className="option__state">
-        <select onChange={(e) => handleLocationChange(e)}>
+        <select name="location" onChange={(e) => handleLocationChange(e)}>
           <option value="">-</option>
           {states
             ? states.map((state) => {

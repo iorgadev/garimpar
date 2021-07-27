@@ -28,13 +28,13 @@ function Award({ setAwardTypes }: AwardProps) {
       <div className="option__award">
         <div
           className={`check-option medal choice ${
-            selectedAwards.includes(`mention`) ? `checked` : ``
+            selectedAwards.includes(`MENCAO`) ? `checked` : ``
           }`}
         >
           <input
             type="checkbox"
             name="award"
-            value="mention"
+            value="MENCAO"
             onChange={(e) => handleCheckBox(e)}
           />
           <Icon title="Mention" />
@@ -43,13 +43,13 @@ function Award({ setAwardTypes }: AwardProps) {
 
         <div
           className={`check-option medal choice bronze ${
-            selectedAwards.includes(`bronze`) ? `checked` : ``
+            selectedAwards.includes(`BRONZE`) ? `checked` : ``
           }`}
         >
           <input
             type="checkbox"
             name="award"
-            value="bronze"
+            value="BRONZE"
             onChange={(e) => handleCheckBox(e)}
           />
           <Icon title="Award" />
@@ -58,32 +58,32 @@ function Award({ setAwardTypes }: AwardProps) {
 
         <div
           className={`check-option medal choice silver ${
-            selectedAwards.includes(`silver`) ? `checked` : ``
+            selectedAwards.includes(`PRATA`) ? `checked` : ``
           }`}
         >
           <input
             type="checkbox"
             name="award"
-            value="silver"
+            value="PRATA"
             onChange={(e) => handleCheckBox(e)}
           />
           <Icon title="Award" />
-          <span>SILVER</span>
+          <span>PRATA</span>
         </div>
 
         <div
           className={`check-option medal choice gold ${
-            selectedAwards.includes(`gold`) ? `checked` : ``
+            selectedAwards.includes(`OURO`) ? `checked` : ``
           }`}
         >
           <input
             type="checkbox"
             name="award"
-            value="gold"
+            value="OURO"
             onChange={(e) => handleCheckBox(e)}
           />
           <Icon title="Award" />
-          <span>GOLD</span>
+          <span>OURO</span>
         </div>
       </div>
     </Fieldset>

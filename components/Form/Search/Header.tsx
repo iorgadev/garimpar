@@ -1,6 +1,10 @@
 import React from "react";
 
-function Header() {
+interface HeaderProps {
+  setHidden: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+function Header({ setHidden }: HeaderProps) {
   return (
     <div className="search__header">
       <svg
@@ -37,6 +41,7 @@ function Header() {
           className="search__header__icon"
           viewBox="0 0 20 20"
           fill="currentColor"
+          onClick={() => setHidden((hidden) => !hidden)}
         >
           <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
         </svg>
