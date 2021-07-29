@@ -1,15 +1,12 @@
 import dynamic from "next/dynamic";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Search from "../components/Form/Search/Search";
 import { SchoolType } from "../types/SearchOptions";
 
 export default function Home() {
   const [searchResults, setSearchResults] = useState<SchoolType[]>([]);
 
-  useEffect(() => {
-    // console.log(searchResults);
-  }, [searchResults]);
-
+  //dynamic load the Map component in order for Leaflet to run properly
   const Map = dynamic(() => import("../components/Map/Map"), {
     ssr: false,
   });

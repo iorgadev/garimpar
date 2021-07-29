@@ -94,4 +94,12 @@
   @media only screen and (max-width: 1440px) {
     margin-bottom: 1rem;
   }
+
+  //responsive
+  @media only screen and (max-width: 600px) {
+    & + .oneline {
+      align-items: start;
+      flex-direction: column;
+    }
+  }
 }

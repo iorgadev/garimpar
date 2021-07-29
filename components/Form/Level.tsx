@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { CompetitionType, LevelType } from "../../types/SearchOptions";
+import { CompetitionType } from "../../types/SearchOptions";
 import Fieldset from "./Fieldset";
 
 interface LevelProps {

@@ -12,7 +12,6 @@ import Icon from "../../Icons/Icon";
 import { CompetitionType, SchoolType } from "../../../types/SearchOptions";
 
 interface SearchProps {
-  // setSearchCriteria?: React.Dispatch<React.SetStateAction<{}>>;
   setSearchResults: React.Dispatch<React.SetStateAction<SchoolType[]>>;
 }
 
@@ -20,7 +19,7 @@ function Search({ setSearchResults }: SearchProps) {
   //search sidebar status
   const [hidden, setHidden] = useState(false);
 
-  //all search settings
+  //all search settings state
   const [competitionType, setCompetitionType] = useState<CompetitionType>(
     {} as CompetitionType
   );
@@ -31,7 +30,7 @@ function Search({ setSearchResults }: SearchProps) {
   const [endDate, setEndDate] = useState(new Date().getFullYear());
   const [location, setLocation] = useState<number | null>();
 
-  //building query criteria from search settings to get results
+  //building query criteria from search settings to make API call
   const searchCriteria = async () => {
     let criteria = {};
 
@@ -42,9 +41,10 @@ function Search({ setSearchResults }: SearchProps) {
       awardTypes: awardTypes,
       accessTypes: accessTypes,
       location: location,
-      // ...searchCriteria,
+      //missing: mentions
     };
 
+    //make API call using the criteria generated above
     const schoolResults = await fetch(`http://localhost:8080/schools`, {
       method: "POST",
       mode: "cors",

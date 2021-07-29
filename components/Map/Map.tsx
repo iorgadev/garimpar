@@ -9,6 +9,7 @@ import {
 import "leaflet/dist/leaflet.css";
 import { SchoolType } from "../../types/SearchOptions";
 
+//Props Map receives from other components
 interface MapProps {
   searchResults: SchoolType[];
 }
@@ -38,6 +39,7 @@ function Map({ searchResults }: MapProps) {
       : null;
   };
 
+  //Map component being rendered to the page
   return (
     <MapContainer
       center={[-9.3438819, -57.2983458]}

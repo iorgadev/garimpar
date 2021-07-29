@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { StateType } from "../../types/SearchOptions";
 import Fieldset from "./Fieldset";
 
-interface StateType {
-  id: number;
-  name: string;
+interface StateProps {
+  setLocation: React.Dispatch<React.SetStateAction<number | null | undefined>>;
 }
 
-function State({ setLocation }) {
+function State({ setLocation }: StateProps) {
   const [states, setStates] = useState<StateType[]>([]);
 
   useEffect(() => {
@@ -17,14 +17,19 @@ function State({ setLocation }) {
       });
   }, []);
 
-  const handleLocationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleLocationChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setLocation(parseInt(e.target.value));
   };
 
   return (
     <Fieldset title="State" oneLine={true}>
       <div className="option__state">
-        <select name="location" onChange={(e) => handleLocationChange(e)}>
+        <select
+          name="location"
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+            handleLocationChange(e)
+          }
+        >
           <option value="">-</option>
           {states
             ? states.map((state) => {

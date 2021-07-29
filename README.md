@@ -12,6 +12,6 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Extra Details
 
-- What information should the marker for the results show? Which fields from the database?
-
+- POST data sent to API should be sanitized on API end
+- Responsive design elements not implemented
 -

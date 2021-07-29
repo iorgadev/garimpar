@@ -43,9 +43,13 @@ $base-color: #000000;
     //responsive queries
     @media only screen and (max-width: 600px) {
       & {
-        padding: 1rem 1rem;
+        padding: 1rem 0.25rem;
       }
     }
+  }
+
+  @media only screen and (max-width: 600px) {
+    position: relative;
   }
 }
 

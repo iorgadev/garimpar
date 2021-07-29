@@ -1,3 +1,4 @@
+//Props Icon component receives
 interface IconType {
   title: string;
 }

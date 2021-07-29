@@ -8,8 +8,9 @@ interface AccessProps {
 function Access({ setAccessTypes }: AccessProps) {
   const [selectedAccess, setSelectedAccess] = useState<string[]>([]);
 
+  // handle when checkboxes are checked/unchecked
   const handleCheckBox = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // add element to selected awards, or remove if already selected
+    // add element to selected awards state, or remove if already selected
     if (!selectedAccess.includes(e.target.value))
       setSelectedAccess((access) => [...access, e.target.value]);
     else

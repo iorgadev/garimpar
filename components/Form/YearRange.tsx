@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Fieldset from "./Fieldset";
 
 interface YearRangeProps {
@@ -7,20 +7,21 @@ interface YearRangeProps {
 }
 
 function YearRange({ setStartDate, setEndDate }: YearRangeProps) {
-  // const year = new Date().getFullYear();
   const startYear = 2008;
   const endYear = new Date().getFullYear();
-  // const [startYear, setStartYear] = useState(2008);
-  // const [endYear, setEndYear] = useState(year);
   const [currentStartYear, setCurrentStartYear] = useState(startYear);
   const [currentEndYear, setCurrentEndYear] = useState(endYear);
 
   const yearSelectOptions = (type = "start") => {
-    const start = () => type === "start";
+    //from (start) - to (end) year selectable options
+    const isStart = () => type === "start";
 
+    //check if year range should be disabled based on user selection
+    //ex: if start date is 2012, Year END can not be less than 2012
     const disabled = (value: number) =>
-      start() ? value > currentEndYear : value < currentStartYear;
+      isStart() ? value > currentEndYear : value < currentStartYear;
 
+    //create selectable years for form fields (Start / End years)
     let yearOptions = [];
     for (let i = startYear; i <= endYear; i++) {
       yearOptions.push(
@@ -31,16 +32,6 @@ function YearRange({ setStartDate, setEndDate }: YearRangeProps) {
     }
     return yearOptions;
   };
-
-  useEffect(() => {
-    if (currentStartYear > currentEndYear)
-      setCurrentStartYear(currentStartYear);
-    setStartDate(currentStartYear);
-  }, [currentStartYear]);
-  useEffect(() => {
-    if (currentEndYear < currentStartYear) setCurrentEndYear(currentEndYear);
-    setEndDate(currentEndYear);
-  }, [currentEndYear]);
 
   return (
     <Fieldset title="Year" oneLine={true}>
