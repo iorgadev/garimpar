@@ -32,7 +32,17 @@ function Map({ searchResults }: MapProps) {
               position={[school.lat, school.lon]}
               icon={mapPin}
             >
-              <Popup>{school.name}</Popup>
+              <Popup>
+                <p>Student: {school.studentname}</p>
+                <p>Student ID: {school.studentid}</p>
+                <p>Mentions: {school.mentions}</p>
+                <p>School: {school.schoolname}</p>
+                <p>City: {school.city}</p>
+                <br />
+                <p>Award Level: {school.awardlevel}</p>
+                <p>Award Type: {school.awardtype}</p>
+                <p>Award Year: {school.awardyear}</p>
+              </Popup>
             </Marker>
           );
         })
@@ -42,8 +52,8 @@ function Map({ searchResults }: MapProps) {
   //Map component being rendered to the page
   return (
     <MapContainer
-      center={[-9.3438819, -57.2983458]}
-      zoom={6}
+      center={[-9.3438819, -67.2983458]}
+      zoom={5}
       scrollWheelZoom={true}
       zoomControl={false}
     >

@@ -2,7 +2,7 @@ $base-color: #000000;
 
 .search {
   position: fixed;
-  width: auto;
+  width: 550px;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -13,9 +13,10 @@ $base-color: #000000;
 
   & form {
     padding: 1rem 3rem;
-    background-color: #031929;
-    width: 550px;
-    height: 100%;
+    background-color: $form-background-color;
+    width: 100%;
+    // width: 550px;
+    // height: 100%;
 
     & .submit {
       display: flex;
@@ -35,21 +36,24 @@ $base-color: #000000;
       &:hover,
       &:active {
         background-color: $main-light-color;
-        border-color: $light-blue;
-        color: $light-blue;
+        border-color: $fieldset-title-color;
+        color: $fieldset-title-color;
       }
     }
 
     //responsive queries
     @media only screen and (max-width: 600px) {
       & {
+        width: 100%;
         padding: 1rem 0.25rem;
       }
     }
   }
 
   @media only screen and (max-width: 600px) {
-    position: relative;
+    // position: relative;
+    width: 100%;
+    overflow-y: scroll;
   }
 }
 
@@ -59,7 +63,7 @@ $base-color: #000000;
 
 .backto {
   width: 100%;
-  background-color: $main-dark-color;
+  background-color: $form-background-color;
   text-align: right;
   padding: 0 3rem 1rem 3rem;
   color: rgb(141, 141, 141);

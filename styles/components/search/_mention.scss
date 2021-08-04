@@ -4,13 +4,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
-    & span {
-      position: absolute;
-    }
+    column-gap: 1rem;
 
     & input {
       width: 100%;
+      cursor: pointer;
+    }
+    & input[type="range"]::-webkit-slider-runnable-track {
+      height: 40px;
     }
   }
 }

@@ -38,7 +38,7 @@ function Level({ competitionType, setLevels }: LevelProps) {
     ["1o", "2o", "3o", "8o", "9o"],
     ["N1", "N2", "N3"],
     ["N1", "N2", "N3"],
-    ["I1", "I2", "P1", "P2", "P3"],
+    ["I1", "I2", "P1", "P2", "PJ"],
   ];
 
   return (

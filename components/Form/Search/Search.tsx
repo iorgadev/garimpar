@@ -24,6 +24,7 @@ function Search({ setSearchResults }: SearchProps) {
     {} as CompetitionType
   );
   const [levels, setLevels] = useState<string[]>([]);
+  const [mentions, setMentions] = useState(0);
   const [awardTypes, setAwardTypes] = useState<string[]>([]);
   const [accessTypes, setAccessTypes] = useState<string[]>([]);
   const [startDate, setStartDate] = useState(2008);
@@ -37,11 +38,11 @@ function Search({ setSearchResults }: SearchProps) {
     criteria = {
       competitionID: competitionType.id,
       year: { start: startDate, end: endDate },
+      mentions: mentions,
       levels: levels.map((level) => level.split("-")[1]),
       awardTypes: awardTypes,
       accessTypes: accessTypes,
       location: location,
-      //missing: mentions
     };
 
     //make API call using the criteria generated above
@@ -59,6 +60,8 @@ function Search({ setSearchResults }: SearchProps) {
 
     //if api calls succeeds
     if (schoolResults.status === 200) setSearchResults(schools);
+
+    console.log(schools);
   };
 
   return (
@@ -69,7 +72,7 @@ function Search({ setSearchResults }: SearchProps) {
       <form>
         <Competition setCompetitionType={setCompetitionType} />
         <YearRange setStartDate={setStartDate} setEndDate={setEndDate} />
-        <Mention />
+        <Mention setMentions={setMentions} />
         <Level competitionType={competitionType} setLevels={setLevels} />
         <Award setAwardTypes={setAwardTypes} />
         <Access setAccessTypes={setAccessTypes} />

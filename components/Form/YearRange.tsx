@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Fieldset from "./Fieldset";
 
 interface YearRangeProps {
@@ -32,6 +32,13 @@ function YearRange({ setStartDate, setEndDate }: YearRangeProps) {
     }
     return yearOptions;
   };
+
+  useEffect(() => {
+    setStartDate(currentStartYear);
+  }, [setStartDate, currentStartYear]);
+  useEffect(() => {
+    setEndDate(currentEndYear);
+  }, [setEndDate, currentEndYear]);
 
   return (
     <Fieldset title="Year" oneLine={true}>

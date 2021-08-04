@@ -14,7 +14,7 @@ function Fieldset({ title, children, oneLine = false }: FieldsetProps) {
         style={{ marginBottom: !oneLine ? `.5rem` : `0` }}
       >
         <legend className="option__header__title">
-          <Icon title={title} />
+          {/* <Icon title={title} /> */}
           {title}
         </legend>
       </div>
