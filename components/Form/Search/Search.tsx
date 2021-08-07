@@ -1,4 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
+import Router from "next/router";
+import Link from "next/link";
+import { CompetitionType, SchoolType } from "../../../types/SearchOptions";
 import Access from "../Access";
 import Award from "../Award";
 import Competition from "../Competition";
@@ -9,7 +12,7 @@ import YearRange from "../YearRange";
 import Header from "./Header";
 import SubHeader from "./SubHeader";
 import Icon from "../../Icons/Icon";
-import { CompetitionType, SchoolType } from "../../../types/SearchOptions";
+import SubmitButton from "../SubmitButton";
 
 interface SearchProps {
   setSearchResults: React.Dispatch<React.SetStateAction<SchoolType[]>>;
@@ -45,23 +48,32 @@ function Search({ setSearchResults }: SearchProps) {
       location: location,
     };
 
+    //if no token found, redirect to login page
+    if (!localStorage.getItem("token")) {
+      Router.push("/");
+    }
+
     //make API call using the criteria generated above
-    const schoolResults = await fetch(`http://localhost:8080/schools`, {
+    const studentResults = await fetch(`http://localhost:8080/students`, {
       method: "POST",
       mode: "cors",
       cache: "no-cache",
       headers: {
         Accept: "application/json",
         "Content-type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify(criteria),
     });
-    const schools = await schoolResults.json();
+    const students = await studentResults.json();
 
-    //if api calls succeeds
-    if (schoolResults.status === 200) setSearchResults(schools);
+    //if api calls succeeds and returns results
+    if (studentResults.status === 200) setSearchResults(students);
+  };
 
-    console.log(schools);
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    Router.push("/");
   };
 
   return (
@@ -77,23 +89,23 @@ function Search({ setSearchResults }: SearchProps) {
         <Award setAwardTypes={setAwardTypes} />
         <Access setAccessTypes={setAccessTypes} />
         <State setLocation={setLocation} />
-
-        <div className="submit">
-          <input
-            type="submit"
-            name="search"
-            value="Search Awards"
-            onClick={(e) => {
-              e.preventDefault();
-              searchCriteria();
-            }}
-          />
-        </div>
+        <SubmitButton searchCriteria={searchCriteria} />
       </form>
 
-      <span className="backto">
-        <Icon title="Back" /> Back to Primeira Chance
-      </span>
+      <div className="bottomlinks">
+        <Link href="http://www.primeirachance.org">
+          <a>
+            <div>
+              <Icon title="Back" />
+              <span>Back to Primeira Chance</span>
+            </div>
+          </a>
+        </Link>
+        <div onClick={handleLogout} className="bottomlinks__logout">
+          <Icon title="Logout" />
+          <span>Logout</span>
+        </div>
+      </div>
     </div>
   );
 }

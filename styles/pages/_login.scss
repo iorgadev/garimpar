@@ -1,0 +1,82 @@
+.page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.splash {
+  // width: 100%;
+  // min-height: 100vh;
+  max-width: 1440px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 3rem;
+  margin: 0 auto;
+  color: $main-dark-color;
+
+  &__content {
+    flex-grow: 1;
+
+    &__logo {
+      display: flex;
+      align-items: center;
+      column-gap: 0.5rem;
+      font-weight: bold;
+    }
+
+    & > h1 {
+      font-size: 3.5rem;
+
+      @media screen and (max-width: 600px) {
+        font-size: 2rem;
+      }
+    }
+
+    & > p {
+      font-size: 1.5rem;
+      @media screen and (max-width: 600px) {
+        font-size: 1.15rem;
+      }
+    }
+  }
+
+  &__form {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+
+    & input {
+      height: 3.5rem;
+      font-size: 1.5rem;
+      border-radius: 0.25rem;
+      border: 1px solid $main-dark-color;
+      padding: 0.5rem;
+    }
+
+    & input[type="button"] {
+      background-color: $main-light-color;
+      color: $light-blue;
+      text-transform: uppercase;
+      cursor: pointer;
+
+      &:hover,
+      &:active {
+        background-color: $main-dark-color;
+      }
+    }
+
+    @media screen and(max-width:740px) {
+      width: 100%;
+    }
+  }
+
+  @media screen and(max-width:740px) {
+    flex-direction: column;
+  }
+  @media screen and(max-width:1440px) {
+    padding: 2rem;
+  }
+}

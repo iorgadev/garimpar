@@ -18,7 +18,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    column-gap: 1rem;
+    grid-column-gap: 1rem;
   }
 
   .choice {
@@ -88,7 +88,7 @@
       // padding-left: 0.75rem;
       display: flex;
       align-items: center;
-      column-gap: 0.5rem;
+      grid-column-gap: 0.5rem;
       color: $main-dark-color;
     }
   }
