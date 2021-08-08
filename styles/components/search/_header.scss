@@ -65,11 +65,12 @@
       cursor: pointer;
       transition: all;
       transition-duration: 0.5s;
-      // transition-delay: 0.5s;
       animation-name: sidebarbutton;
-      // animation-duration: 1s;
-      // animation-delay: 0.5s;
       transform: translateX(100%);
+
+      @media screen and(max-width:600px) {
+        display: none;
+      }
 
       & > span {
         font-size: 0.6rem;

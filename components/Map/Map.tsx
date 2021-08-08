@@ -5,9 +5,11 @@ import {
   Marker,
   Popup,
   ZoomControl,
+  useMap,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { SchoolType } from "../../types/SearchOptions";
+import { useEffect, useState } from "react";
 
 //Props Map receives from other components
 interface MapProps {
@@ -15,6 +17,8 @@ interface MapProps {
 }
 
 function Map({ searchResults }: MapProps) {
+  const [lat, setLat] = useState(-9.3438819);
+  const [lon, setLon] = useState(-67.2983458);
   //the current pin for each school result
   // - can be customized to include other colors, sizes, etc
   var mapPin = L.icon({
@@ -33,15 +37,24 @@ function Map({ searchResults }: MapProps) {
               icon={mapPin}
             >
               <Popup>
-                <p>Student: {school.studentname}</p>
-                <p>Student ID: {school.studentid}</p>
-                <p>Mentions: {school.mentions}</p>
-                <p>School: {school.schoolname}</p>
-                <p>City: {school.city}</p>
+                <p className="studentinfo__name">{school.studentname}</p>
+                <p>{school.schoolname}</p>
+                <p>
+                  {school.city}, {school.statecode} {school.zipcode}
+                </p>
                 <br />
-                <p>Award Level: {school.awardlevel}</p>
-                <p>Award Type: {school.awardtype}</p>
-                <p>Award Year: {school.awardyear}</p>
+                <p>
+                  <b>Mentions:</b> {school.mentions}
+                </p>
+                <p>
+                  <b>Level:</b> {school.awardlevel}
+                </p>
+                <p>
+                  <b>Type:</b> {school.awardtype}
+                </p>
+                <p>
+                  <b>Year:</b> {school.awardyear}
+                </p>
               </Popup>
             </Marker>
           );
@@ -49,10 +62,24 @@ function Map({ searchResults }: MapProps) {
       : null;
   };
 
+  useEffect(() => {
+    if (searchResults.length > 0) {
+      setLat(searchResults[0].lat);
+      setLon(searchResults[0].lon);
+    }
+  }, [searchResults]);
+
+  function ChangeMapView({ coords }) {
+    const map = useMap();
+    map.setView(coords, map.getZoom());
+
+    return null;
+  }
+
   //Map component being rendered to the page
   return (
     <MapContainer
-      center={[-9.3438819, -67.2983458]}
+      center={[lat, lon]}
       zoom={5}
       scrollWheelZoom={true}
       zoomControl={false}
@@ -62,6 +89,7 @@ function Map({ searchResults }: MapProps) {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <ZoomControl position="topright" />
+      <ChangeMapView coords={[lat, lon]} />
       {resultMarkers(searchResults)}
     </MapContainer>
   );

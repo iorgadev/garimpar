@@ -1,8 +1,6 @@
-$base-color: #000000;
-
 .search {
   position: fixed;
-  width: 550px;
+  width: 500px;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -12,19 +10,18 @@ $base-color: #000000;
   transition-duration: 0.5s;
 
   & form {
-    padding: 1rem 3rem;
+    padding: 1rem 2rem;
     background-color: $form-background-color;
     width: 100%;
     // width: 550px;
     height: 100%;
 
     & .submit {
+      width: 75%;
+      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-
-    & input[type="button"] {
       background-color: $main-yellow-color;
       border: 2px solid #c59f22;
       border-radius: 0.5rem;
@@ -32,13 +29,24 @@ $base-color: #000000;
       padding: 0.5rem 2rem;
       color: $main-dark-color;
       cursor: pointer;
-
       &:hover,
       &:active {
         background-color: $main-light-color;
         border-color: $fieldset-title-color;
         color: $fieldset-title-color;
       }
+    }
+
+    & input[type="button"] {
+      // background-color: $main-yellow-color;
+      background-color: inherit;
+      border: 0;
+      // border: 2px solid #c59f22;
+      // border-radius: 0.5rem;
+      font-size: 1.75rem;
+      // padding: 0.5rem 2rem;
+      color: $main-dark-color;
+      cursor: pointer;
     }
 
     //responsive queries
@@ -50,6 +58,13 @@ $base-color: #000000;
     }
   }
 
+  @media only screen and (min-width: 601px) and (max-width: 1440px) {
+    // position: relative;
+    width: 450px;
+    & form {
+      padding: 1rem;
+    }
+  }
   @media only screen and (max-width: 600px) {
     // position: relative;
     width: 100%;
@@ -71,6 +86,12 @@ $base-color: #000000;
   justify-content: flex-end;
   display: flex;
   column-gap: 1rem;
+
+  @media screen and (max-width: 600px) {
+    padding: 0;
+    justify-content: center;
+    // margin: 0 auto;
+  }
 
   & a {
     color: $main-light-color;

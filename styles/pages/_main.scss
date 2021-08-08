@@ -1,3 +1,32 @@
 .main {
   display: flex;
+
+  //search button only displayed on mobile devices to bring back hidden sidebar
+  &__sidebarbutton {
+    display: none;
+    @media screen and (max-width: 600px) {
+      display: flex;
+      position: absolute;
+      bottom: 2rem;
+      right: 1rem;
+      flex-direction: row;
+      align-items: center;
+      background-color: $main-dark-color;
+      border: 2px solid $light-blue;
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: all;
+      transition-duration: 0.5s;
+      opacity: 1;
+      color: $main-light-color;
+
+      &:focus,
+      &:hover,
+      &:active {
+        background-color: $main-light-color;
+        color: $main-dark-color;
+      }
+    }
+  }
 }

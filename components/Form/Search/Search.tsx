@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Router from "next/router";
 import Link from "next/link";
 import { CompetitionType, SchoolType } from "../../../types/SearchOptions";
@@ -16,9 +16,11 @@ import SubmitButton from "../SubmitButton";
 
 interface SearchProps {
   setSearchResults: React.Dispatch<React.SetStateAction<SchoolType[]>>;
+  hideSidebar: boolean;
+  // setHidden: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function Search({ setSearchResults }: SearchProps) {
+function Search({ setSearchResults, hideSidebar }: SearchProps) {
   //search sidebar status
   const [hidden, setHidden] = useState(false);
 
@@ -71,6 +73,10 @@ function Search({ setSearchResults }: SearchProps) {
     if (studentResults.status === 200) setSearchResults(students);
   };
 
+  useEffect(() => {
+    setHidden(false);
+  }, [hideSidebar]);
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     Router.push("/");
@@ -89,7 +95,7 @@ function Search({ setSearchResults }: SearchProps) {
         <Award setAwardTypes={setAwardTypes} />
         <Access setAccessTypes={setAccessTypes} />
         <State setLocation={setLocation} />
-        <SubmitButton searchCriteria={searchCriteria} />
+        <SubmitButton searchCriteria={searchCriteria} setHidden={setHidden} />
       </form>
 
       <div className="bottomlinks">

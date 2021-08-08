@@ -45,3 +45,18 @@ a {
     color: $main-light-color !important;
   }
 }
+
+// leaflet popup styles
+.leaflet-popup-content {
+  & p {
+    margin: 0 !important;
+  }
+
+  .studentinfo {
+    &__name {
+      color: $main-light-color;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+  }
+}

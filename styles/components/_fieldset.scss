@@ -90,6 +90,9 @@
       align-items: center;
       grid-column-gap: 0.5rem;
       color: $main-dark-color;
+      @media screen and (max-width: 600px) {
+        font-size: 1rem;
+      }
     }
   }
 
@@ -105,8 +108,8 @@
     padding: 0 0.5rem 0.5rem 0.5rem;
 
     & + .oneline {
-      align-items: start;
-      flex-direction: column;
+      // align-items: start;
+      // flex-direction: column;
     }
   }
 }

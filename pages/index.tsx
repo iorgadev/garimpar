@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import Head from "next/head";
 
 import Router from "next/router";
+import Icon from "../components/Icons/Icon";
+import Link from "next/link";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
+  const [loginFailed, setLoginFailed] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -17,6 +21,7 @@ function Login() {
   }, [loggedIn]);
 
   const handleLogin = async () => {
+    setLoginFailed("");
     const result = await fetch("http://localhost:8080/login", {
       method: "POST",
       headers: {
@@ -27,18 +32,22 @@ function Login() {
     const loginData = await result.json();
 
     if (result.status === 200) {
-      const { token, loginSuccess } = loginData;
+      const { token, loginSuccess, error } = loginData;
       if (loginSuccess) {
         localStorage.setItem("token", token);
         Router.push("/search");
       } else {
-        console.log("invalid login");
+        setLoginFailed(error);
       }
     }
   };
 
   return (
     <div className="page">
+      <Head>
+        <title>Garimpar - Primeira Chance</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <div className="splash">
         <div className="splash__content">
           <span className="splash__content__logo">
@@ -46,8 +55,8 @@ function Login() {
               src="/images/diamond.png"
               alt="logo"
               layout="intrinsic"
-              width={24}
-              height={24}
+              width={36}
+              height={36}
             />
             Garimpar
           </span>
@@ -58,11 +67,25 @@ function Login() {
             ano a ano.
           </p>
 
-          <p>Platforma exclusiva desenvolvida pela Primeira Chance</p>
+          <p>
+            Platforma exclusiva desenvolvida pela{" "}
+            <Link href="http://primeirachance.org">
+              <a>Primeira Chance</a>
+            </Link>
+          </p>
 
-          <p>Tem interesse? Entre em contato.</p>
+          <p>
+            Tem interesse?{" "}
+            <Link href="http://primeirachance.org">
+              <a>Entre em contato.</a>
+            </Link>
+          </p>
         </div>
         <form className="splash__form">
+          <span className="splash__form__title">
+            <span>Sign In</span>
+            <Icon title="Right" />
+          </span>
           <input
             type="text"
             name="email"
@@ -79,6 +102,7 @@ function Login() {
           />
 
           <input type="button" value="login" onClick={handleLogin} />
+          <span className="splash__form__error">{loginFailed}</span>
         </form>
       </div>
     </div>

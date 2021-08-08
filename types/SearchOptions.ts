@@ -15,6 +15,7 @@ export interface SchoolType {
   schoolaccess: string;
   lat: number;
   lon: number;
+  zipcode: number;
   city: string;
   state: string;
   statecode: string;
