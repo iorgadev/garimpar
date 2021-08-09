@@ -45,17 +45,18 @@
   }
   .medal {
     flex-direction: column;
+    font-weight: 600;
 
     & + .bronze {
-      color: rgb(255, 145, 0);
+      color: #b4712f;
     }
 
     & + .silver {
-      color: rgb(192, 192, 192);
+      color: rgb(122, 122, 122);
     }
 
     & + .gold {
-      color: rgb(216, 183, 0);
+      color: #e0c00b;
     }
 
     & + .checked {

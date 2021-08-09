@@ -25,7 +25,7 @@ function Header({ hidden, setHidden }: HeaderProps) {
             clipRule="evenodd"
           />
         </svg>
-        <span>Search</span>
+        <span>Buscar</span>
       </div>
 
       {/* search icon */}

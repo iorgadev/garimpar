@@ -4,9 +4,14 @@ import useWindowDimensions from "../../hooks/useWindowDimensions";
 interface SearchButtonProps {
   searchCriteria: () => Promise<void>;
   setHidden: React.Dispatch<React.SetStateAction<boolean>>;
+  loading: boolean;
 }
 
-function SubmitButton({ searchCriteria, setHidden }: SearchButtonProps) {
+function SubmitButton({
+  searchCriteria,
+  setHidden,
+  loading,
+}: SearchButtonProps) {
   const { height, width } = useWindowDimensions();
 
   const handleSearchButton = () => {
@@ -29,7 +34,12 @@ function SubmitButton({ searchCriteria, setHidden }: SearchButtonProps) {
           clipRule="evenodd"
         />
       </svg>
-      <input type="button" name="search" value="Search Awards" />
+      <input
+        type="button"
+        name="search"
+        disabled={loading}
+        value={!loading ? `Buscar` : `Carregando...`}
+      />
     </div>
   );
 }

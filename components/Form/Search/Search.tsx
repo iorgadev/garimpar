@@ -23,6 +23,8 @@ interface SearchProps {
 function Search({ setSearchResults, hideSidebar }: SearchProps) {
   //search sidebar status
   const [hidden, setHidden] = useState(false);
+  //search results are loading
+  const [loading, setLoading] = useState(false);
 
   //all search settings state
   const [competitionType, setCompetitionType] = useState<CompetitionType>(
@@ -38,6 +40,7 @@ function Search({ setSearchResults, hideSidebar }: SearchProps) {
 
   //building query criteria from search settings to make API call
   const searchCriteria = async () => {
+    setLoading(true);
     let criteria = {};
 
     criteria = {
@@ -56,21 +59,25 @@ function Search({ setSearchResults, hideSidebar }: SearchProps) {
     }
 
     //make API call using the criteria generated above
-    const studentResults = await fetch(`http://localhost:8080/students`, {
-      method: "POST",
-      mode: "cors",
-      cache: "no-cache",
-      headers: {
-        Accept: "application/json",
-        "Content-type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-      body: JSON.stringify(criteria),
-    });
+    const studentResults = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/students`,
+      {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        headers: {
+          Accept: "application/json",
+          "Content-type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify(criteria),
+      }
+    );
     const students = await studentResults.json();
 
     //if api calls succeeds and returns results
     if (studentResults.status === 200) setSearchResults(students);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -95,7 +102,11 @@ function Search({ setSearchResults, hideSidebar }: SearchProps) {
         <Award setAwardTypes={setAwardTypes} />
         <Access setAccessTypes={setAccessTypes} />
         <State setLocation={setLocation} />
-        <SubmitButton searchCriteria={searchCriteria} setHidden={setHidden} />
+        <SubmitButton
+          searchCriteria={searchCriteria}
+          setHidden={setHidden}
+          loading={loading}
+        />
       </form>
 
       <div className="bottomlinks">
@@ -103,7 +114,7 @@ function Search({ setSearchResults, hideSidebar }: SearchProps) {
           <a>
             <div>
               <Icon title="Back" />
-              <span>Back to Primeira Chance</span>
+              <span>Voltar para o Primeira Chance</span>
             </div>
           </a>
         </Link>

@@ -41,10 +41,10 @@ function YearRange({ setStartDate, setEndDate }: YearRangeProps) {
   }, [setEndDate, currentEndYear]);
 
   return (
-    <Fieldset title="Year" oneLine={true}>
+    <Fieldset title="Ano" oneLine={true}>
       <div className="option__year">
         <div className="option__year__to choice">
-          From:
+          De:
           <select
             name="startYear"
             onChange={(e) => setCurrentStartYear(parseInt(e.target.value))}
@@ -53,7 +53,7 @@ function YearRange({ setStartDate, setEndDate }: YearRangeProps) {
           </select>
         </div>
         <div className="option__year__from choice">
-          To:
+          Até:
           <select
             name="endYear"
             defaultValue={endYear}

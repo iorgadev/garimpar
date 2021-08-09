@@ -10,7 +10,7 @@ function Register() {
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleRegisterSubmit = async () => {
-    const result = await fetch("http://localhost:8080/register", {
+    const result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -35,7 +35,7 @@ function Register() {
       <div className="splash register">
         <form autoComplete="new-password" className="splash__form">
           <span className="splash__form__title">
-            <span>Register</span>
+            <span>Cadastre-se</span>
             <Icon title="Right" />
           </span>
           <input
@@ -44,7 +44,7 @@ function Register() {
             type="text"
             name="email"
             id="email"
-            placeholder="Email"
+            placeholder="E-mail"
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
@@ -52,28 +52,28 @@ function Register() {
             type="password"
             name="password"
             id="password"
-            placeholder="Password"
+            placeholder="Senha"
             onChange={(e) => setPassword(e.target.value)}
           />
           <input
             type="password"
             name="password2"
             id="password2"
-            placeholder="Retype Password"
+            placeholder="Confirme Senha"
             onChange={(e) => setPassword2(e.target.value)}
           />
           <input
             type="button"
-            value="Register"
+            value="Cadastrar"
             onClick={handleRegisterSubmit}
           />
           <span className="splash__form__error">{errorMessage}</span>
         </form>
         <div>
           <span>
-            Already have an account?{" "}
+            Já tem uma conta?{" "}
             <Link href="/">
-              <a>Login here.</a>
+              <a>Entre aqui!</a>
             </Link>
           </span>
         </div>

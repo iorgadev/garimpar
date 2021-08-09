@@ -29,7 +29,7 @@ function Competition({ setCompetitionType }: CompetitionProps) {
   }, [setCompetitionType]);
 
   return (
-    <Fieldset title="Competition">
+    <Fieldset title="Competição">
       <div className="option__competition">
         {competitionTypes
           ? competitionTypes.map((type: CompetitionType) => {

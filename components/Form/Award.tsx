@@ -24,7 +24,7 @@ function Award({ setAwardTypes }: AwardProps) {
   }, [selectedAwards, setAwardTypes]);
 
   return (
-    <Fieldset title="Award" oneLine={true}>
+    <Fieldset title="Prêmio" oneLine={true}>
       <div className="option__award">
         <div
           className={`check-option medal choice ${
@@ -38,7 +38,7 @@ function Award({ setAwardTypes }: AwardProps) {
             onChange={(e) => handleCheckBox(e)}
           />
           <Icon title="Mention" />
-          <span>MENCAO</span>
+          <span>MENÇÃO</span>
         </div>
 
         <div

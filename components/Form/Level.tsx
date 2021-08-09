@@ -42,7 +42,7 @@ function Level({ competitionType, setLevels }: LevelProps) {
   ];
 
   return (
-    <Fieldset title="Level" oneLine={true}>
+    <Fieldset title="Nível" oneLine={true}>
       <div className="option__level">
         {levelTypes[competitionType.id >= 1 ? competitionType.id - 1 : 0].map(
           (level) => {

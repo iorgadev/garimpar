@@ -22,7 +22,7 @@ function Login() {
 
   const handleLogin = async () => {
     setLoginFailed("");
-    const result = await fetch("http://localhost:8080/login", {
+    const result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -63,12 +63,12 @@ function Login() {
           <h1>Encontre agora os jovens brilhantes do Brasil</h1>
 
           <p>
-            Quem sao, onde estudam, onde vivem, e suas premiacoes em olimpiadas,
+            Quem são, onde estudam, onde vivem, e suas premiações em olimpíadas,
             ano a ano.
           </p>
 
           <p>
-            Platforma exclusiva desenvolvida pela{" "}
+            Plataforma exclusiva desenvolvida pela{" "}
             <Link href="http://primeirachance.org">
               <a>Primeira Chance</a>
             </Link>
@@ -76,32 +76,32 @@ function Login() {
 
           <p>
             Tem interesse?{" "}
-            <Link href="http://primeirachance.org">
+            <Link href="http://www.primeirachance.org/contato/">
               <a>Entre em contato.</a>
             </Link>
           </p>
         </div>
         <form className="splash__form">
           <span className="splash__form__title">
-            <span>Sign In</span>
+            <span>Login</span>
             <Icon title="Right" />
           </span>
           <input
             type="text"
             name="email"
             id="email"
-            placeholder="Email"
+            placeholder="E-mail"
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
             type="password"
             name="password"
             id="password"
-            placeholder="Password"
+            placeholder="Senha"
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <input type="button" value="login" onClick={handleLogin} />
+          <input type="button" value="Entrar" onClick={handleLogin} />
           <span className="splash__form__error">{loginFailed}</span>
         </form>
       </div>

@@ -22,7 +22,7 @@ function State({ setLocation }: StateProps) {
   };
 
   return (
-    <Fieldset title="State" oneLine={true}>
+    <Fieldset title="Estado" oneLine={true}>
       <div className="option__state">
         <select
           name="location"

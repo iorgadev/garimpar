@@ -7,7 +7,9 @@ import {
   ZoomControl,
   useMap,
 } from "react-leaflet";
+import MarkerClusterGroup from "react-leaflet-markercluster";
 import "leaflet/dist/leaflet.css";
+import "react-leaflet-markercluster/dist/styles.min.css";
 import { SchoolType } from "../../types/SearchOptions";
 import { useEffect, useState } from "react";
 
@@ -22,7 +24,7 @@ function Map({ searchResults }: MapProps) {
   //the current pin for each school result
   // - can be customized to include other colors, sizes, etc
   var mapPin = L.icon({
-    iconUrl: "/images/pin3.png",
+    iconUrl: "/images/pin5.png",
     iconSize: [40, 40],
   });
 
@@ -44,16 +46,16 @@ function Map({ searchResults }: MapProps) {
                 </p>
                 <br />
                 <p>
-                  <b>Mentions:</b> {school.mentions}
+                  <b>Menção:</b> {school.mentions}
                 </p>
                 <p>
-                  <b>Level:</b> {school.awardlevel}
+                  <b>Nível:</b> {school.awardlevel}
                 </p>
                 <p>
-                  <b>Type:</b> {school.awardtype}
+                  <b>Tipo:</b> {school.awardtype}
                 </p>
                 <p>
-                  <b>Year:</b> {school.awardyear}
+                  <b>Ano:</b> {school.awardyear}
                 </p>
               </Popup>
             </Marker>
@@ -90,7 +92,7 @@ function Map({ searchResults }: MapProps) {
       />
       <ZoomControl position="topright" />
       <ChangeMapView coords={[lat, lon]} />
-      {resultMarkers(searchResults)}
+      <MarkerClusterGroup>{resultMarkers(searchResults)}</MarkerClusterGroup>
     </MapContainer>
   );
 }

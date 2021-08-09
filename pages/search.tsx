@@ -54,7 +54,7 @@ export default function SearchPage() {
             clipRule="evenodd"
           />
         </svg>
-        <span>SEARCH</span>
+        <span>Buscar</span>
       </div>
     </div>
   );

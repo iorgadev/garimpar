@@ -17,7 +17,7 @@ function Mention({ setMentions }: MentionProps) {
   }, [mentionValue, setMentions]);
 
   return (
-    <Fieldset title="Mentions" oneLine={true}>
+    <Fieldset title="Menção" oneLine={true}>
       <>
         <div className="option__mention choice">
           <span className="mention-value choice">

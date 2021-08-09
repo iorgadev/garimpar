@@ -24,7 +24,7 @@ function Access({ setAccessTypes }: AccessProps) {
   }, [selectedAccess, setAccessTypes]);
 
   return (
-    <Fieldset title="Access" oneLine={true}>
+    <Fieldset title="Escola" oneLine={true}>
       <div className="option__level">
         <div
           className={`check-option choice ${
@@ -37,7 +37,7 @@ function Access({ setAccessTypes }: AccessProps) {
             value="public"
             onChange={(e) => handleCheckBox(e)}
           />
-          <span>Public</span>
+          <span>Pública</span>
         </div>
 
         <div
@@ -51,7 +51,7 @@ function Access({ setAccessTypes }: AccessProps) {
             value="private"
             onChange={(e) => handleCheckBox(e)}
           />
-          <span>Private</span>
+          <span>Privada</span>
         </div>
       </div>
     </Fieldset>
