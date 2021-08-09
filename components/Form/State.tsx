@@ -10,7 +10,7 @@ function State({ setLocation }: StateProps) {
   const [states, setStates] = useState<StateType[]>([]);
 
   useEffect(() => {
-    fetch(`http://localhost:8080/locations`)
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/locations`)
       .then((result) => result.json())
       .then((data) => {
         setStates(data.locations);

@@ -17,7 +17,7 @@ function Competition({ setCompetitionType }: CompetitionProps) {
 
   useEffect(() => {
     //make an API call to get all possible Competition Types from database
-    fetch(`http://localhost:8080/competition-types`)
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/competition-types`)
       .then((result) => result.json())
       .then((data) => {
         setCompetitionTypes(data.competitions);
